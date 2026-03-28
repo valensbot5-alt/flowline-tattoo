@@ -1,26 +1,89 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0D0D0D;
+  --foreground: #E8E8E8;
+  --primary: #1A1A1A;
+  --secondary: #D4A853;
+  --accent: #8B7355;
+  --light-bg: #F5F5F0;
+  --light-text: #1A1A1A;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-light-bg: var(--light-bg);
+  --color-light-text: var(--light-text);
+  --font-sans: var(--font-space-grotesk);
+  --font-body: var(--font-inter);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), Arial, Helvetica, sans-serif;
+  touch-action: pan-y;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background-color: var(--secondary);
+  color: var(--primary);
+}
+
+/* Artist pulse animacija */
+@keyframes artist-pulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 20px 40px rgba(212, 168, 83, 0.25));
+  }
+  50% {
+    transform: scale(1.03);
+    filter: drop-shadow(0 25px 50px rgba(212, 168, 83, 0.4));
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    opacity: 0.15;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+.animate-artist-pulse {
+  animation: artist-pulse 3s ease-in-out infinite;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+@keyframes gold-pulse {
+  0%, 100% {
+    text-shadow: 0 0 8px rgba(212, 168, 83, 0.3), 0 0 20px rgba(212, 168, 83, 0.1);
+  }
+  50% {
+    text-shadow: 0 0 16px rgba(212, 168, 83, 0.6), 0 0 40px rgba(212, 168, 83, 0.25);
+  }
+}
+
+.animate-gold-pulse {
+  animation: gold-pulse 3s ease-in-out infinite;
 }
